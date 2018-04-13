@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-import './layout.css'
+import React, { Component } from "react";
+import "./layout.css";
+
+import Header from "../../components/header/Header";
 
 class Layout extends Component {
-  
-  state = {
-    
-  }
-  
-  render(){
+  state = {};
+
+  render() {
     return (
       <div>
-        Header
+        <Header />
         {this.props.children}
         Footer
       </div>
-    )
+    );
   }
 }
 
-export default Layout
+export default Layout;

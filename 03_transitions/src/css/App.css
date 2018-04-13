@@ -1,0 +1,152 @@
+:root {
+  --color-primary-500: #FFEB3B;
+  --color-primary-600: #FDD835;
+  --color-primary-900: #F57F17;
+  --color-secondary-500: #009688;
+  --color-secondary-900: #004D40;
+  --font-primary: "Montserrat", sans-serif;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.item {
+    background: #2196F3;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+.btns {
+  margin-top: 20px;
+}
+
+.btn-add, 
+.btn-remove {
+  background: #9E9E9E;
+  color: #FFf;
+  text-align: center;
+  padding: 10px;
+}
+.btn-remove {
+    background: #F44336;
+}
+
+.anim_index {
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 10px;
+    background: #e0e0e0;
+}
+.anim_index a {
+    background: #E91E63;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+.showDiv {
+  background: #03A9F4;
+  color: white;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1.5rem 4.5rem;
+  background: #FDD835;
+  color: #F57F17;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: normal;
+  border: 0;
+  border-radius: 0.4rem;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: background 250ms, box-shadow 250ms;
+}
+/*=======================================
+            TRANSITIONS BASIC 
+========================================*/
+.square {
+  background: tomato;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 40px;
+  width: 100%;
+  transition: all 1s ease;
+}
+.square.square-entering,
+.square.true{
+  opacity: 1;
+  transform: translateX(0%);
+}
+.square.square-entered {
+  background: Chocolate;
+}
+.square.square-exiting {
+  background: teal;
+}
+.square.square-exited,
+.square.false{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+/*=======================================
+                CSSTRANSITIONS
+========================================*/
+
+/*=======================================
+                TRANSITIONS GROUP 
+========================================*/
+
+.item {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all .5s ease-in;
+}
+
+.item.active,
+.item-enter.item-enter-active{
+  opacity: 1;
+  transform: translateX(0%);
+}
+.item-exit.item-exit-active{
+  opacity: 0;
+  transform: translateX(-100%);
+}

@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import FontAwesome from "react-fontawesome";
+import { Link } from "react-router-dom";
 import SideNav from "./SideNav/SideNav";
 import style from "./header.css";
 

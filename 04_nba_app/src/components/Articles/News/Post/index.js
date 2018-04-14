@@ -4,7 +4,6 @@ import { JSON_SERVER } from "../../../../config";
 
 import Styles from "../../articles.css";
 import Header from "./Header";
-import Body from "./Body";
 
 export default class NewsArticles extends Component {
   state = {
@@ -36,7 +35,16 @@ export default class NewsArticles extends Component {
           date={article.date}
           author={article.author}
         />
-        <Body />
+        <div className={Styles.articleBody}>
+          <h1>{article.title}</h1>
+          <div
+            className={Styles.articleImage}
+            style={{
+              background: `url('/images/articles/${article.image}')`
+            }}
+          />
+          <div className={Styles.articleText}>{article.body}</div>
+        </div>
       </div>
     );
   }

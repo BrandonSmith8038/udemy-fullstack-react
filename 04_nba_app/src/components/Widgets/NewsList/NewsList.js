@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { JSON_SERVER } from '../../../config'
 import Styles from './NewsList.css'
+import Button from '../Buttons/Buttons'
 
 class NewsList extends Component {
   
@@ -45,13 +46,22 @@ class NewsList extends Component {
         template = this.state.items.map((item, i) => {
           const { title, id } = item
           return (
-            <div key={i}>
-              <div className={Styles.newsList_item}>
-                <Link to={`/articles/${id}`}>
-                  <h2>{title}-{id}</h2>
-                </Link>
+            <CSSTransition
+              classNames={{
+                enter: Styles.newsList_wrapper,
+                enterActive: Styles.newsList_wrapper_enter,
+              }}
+                timeout= {500}
+                key= {i}
+            >
+              <div>
+                <div className={Styles.newsList_item}>
+                  <Link to={`/articles/${id}`}>
+                    <h2>{title}-{id}</h2>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </CSSTransition>
           )
         })
         break;
@@ -64,10 +74,17 @@ class NewsList extends Component {
   render() {
     return (
       <div>
-        { this.renderNews( this.props.type ) }
-        <div onClick={() => this.loadMore()}>
-          LOAD MORE
-        </div>
+        <TransitionGroup
+          component="div"
+          className="list"
+        >
+          { this.renderNews( this.props.type ) }
+        </TransitionGroup>
+        <Button 
+          type="loadMore"
+          loadMore={() => this.loadMore()}
+          cta="Load More News"
+        />
       </div>
     )
   }

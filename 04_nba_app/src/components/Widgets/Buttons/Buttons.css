@@ -1,0 +1,16 @@
+.blue_btn {
+  background: #2196f3;
+  border-bottom: 1px solid #d7d7d7;
+  color: #eee;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 5px;
+  padding: 9px;
+  text-align: center;
+  transition: background .5s ease;
+}
+
+.blue_btn:hover {
+  background: #135a91;
+}

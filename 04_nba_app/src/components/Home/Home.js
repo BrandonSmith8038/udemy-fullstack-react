@@ -25,7 +25,7 @@ const Home = () => (
       title={true}
       loadMore={false}
       start={0}
-      amount={0}
+      amount={4}
     />
   </div>
 );

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { JSON_SERVER } from '../../../config'
+import Styles from './NewsList.css'
 
 class NewsList extends Component {
   
@@ -15,20 +16,58 @@ class NewsList extends Component {
   }
   
   componentDidMount(){
-    axios.get(`${JSON_SERVER}/articles?_start=${this.state.start}&_end=${this.state.end}`)
+    this.request(this.state.start, this.state.end)
+  }
+  
+  request = (start, end) => {
+    console.log(this.state.end)
+    axios.get(`${JSON_SERVER}/articles?_start=${start}&_end=${end}`)
       .then(response => {
         this.setState({
           items: [...this.state.items,...response.data]
-        })
       })
+    })
+  }
+  
+  loadMore = () => {
+    let end = this.state.end + this.state.amount
+    this.request(this.state.end,end)
+    this.setState({
+      end
+    })
+  }
+  
+  renderNews = type => {
+    let template = null
+    
+    switch (type) {
+      case 'card':
+        template = this.state.items.map((item, i) => {
+          const { title, id } = item
+          return (
+            <div key={i}>
+              <div className={Styles.newsList_item}>
+                <Link to={`/articles/${id}`}>
+                  <h2>{title}-{id}</h2>
+                </Link>
+              </div>
+            </div>
+          )
+        })
+        break;
+      default:
+        template = null
+    }
+    return template
   }
   
   render() {
-    console.log(JSON_SERVER)
-    console.log(this.state.items)
     return (
       <div>
-        NewsList
+        { this.renderNews( this.props.type ) }
+        <div onClick={() => this.loadMore()}>
+          LOAD MORE
+        </div>
       </div>
     )
   }

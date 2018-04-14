@@ -1,6 +1,8 @@
-import React from "react";
-import SideNav from "react-simple-sidenav";
-import SideNavItems from "./SideNav_Items";
+import React from 'react';
+import SideNav from 'react-simple-sidenav';
+import PropTypes from 'prop-types';
+
+import SideNavItems from './SideNav_Items';
 
 function SideNavigation(props) {
   return (
@@ -9,8 +11,8 @@ function SideNavigation(props) {
         showNav={props.showNav}
         onHideNav={props.onHideNav}
         navStyle={{
-          background: "#242424",
-          maxWidth: "220px"
+          background: '#242424',
+          maxWidth: '220px',
         }}
       >
         <SideNavItems />
@@ -18,5 +20,10 @@ function SideNavigation(props) {
     </div>
   );
 }
+
+SideNavigation.propTypes = {
+  showNav: PropTypes.func.isRequired,
+  onHideNav: PropTypes.func.isRequired,
+};
 
 export default SideNavigation;

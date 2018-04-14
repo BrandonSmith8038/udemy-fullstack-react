@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import Home from './components/Home/Home'
-import Layout from './hoc/Layout/Layout'
+import Home from './components/Home/Home';
+import Layout from './hoc/Layout/Layout';
 
 class Routes extends Component {
-  render(){
+  render() {
     return (
-      
       <Layout>
         <Switch>
-          <Route path="/" component={Home} exact />  
+          <Route path="/" component={Home} exact />
         </Switch>
       </Layout>
-    )
+    );
   }
 }
 
-export default Routes
+export default Routes;

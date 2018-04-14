@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import "./layout.css";
+import React, { Component } from 'react';
+import './layout.css';
 
-import Header from "../../components/header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from '../../components/header/Header';
+import Footer from '../../components/Footer/Footer';
 
 class Layout extends Component {
   state = {
-    showNav: false
+    showNav: false,
   };
 
   toggleSideNav = action => {
     this.setState({
-      showNav: action
+      showNav: action,
     });
   };
   render() {

@@ -6,11 +6,13 @@ import axios from 'axios'
 import { JSON_SERVER } from '../../../config'
 import Styles from './NewsList.css'
 import Button from '../Buttons/Buttons'
+import CardInfo from '../CardInfo/CardInfo'
 
 class NewsList extends Component {
   
   state = {
     items: [],
+    teams: [],
     start: this.props.start,
     end: this.props.start + this.props.amount,
     amount: this.props.amount
@@ -21,7 +23,15 @@ class NewsList extends Component {
   }
   
   request = (start, end) => {
-    console.log(this.state.end)
+    if(this.state.teams.length < 1){
+      axios.get(`${JSON_SERVER}/teams`)
+        .then(response => {
+          this.setState({
+            teams: response.data
+          })
+        })
+    }
+
     axios.get(`${JSON_SERVER}/articles?_start=${start}&_end=${end}`)
       .then(response => {
         this.setState({
@@ -44,7 +54,7 @@ class NewsList extends Component {
     switch (type) {
       case 'card':
         template = this.state.items.map((item, i) => {
-          const { title, id } = item
+          const { title, id, date } = item
           return (
             <CSSTransition
               classNames={{
@@ -57,7 +67,8 @@ class NewsList extends Component {
               <div>
                 <div className={Styles.newsList_item}>
                   <Link to={`/articles/${id}`}>
-                    <h2>{title}-{id}</h2>
+                    <CardInfo teams={this.state.teams} team={id} date={date} />
+                    <h2>{item.title}</h2>
                   </Link>
                 </div>
               </div>

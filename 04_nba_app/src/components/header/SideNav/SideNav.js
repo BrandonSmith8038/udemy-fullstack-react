@@ -21,9 +21,6 @@ function SideNavigation(props) {
   );
 }
 
-SideNavigation.propTypes = {
-  showNav: PropTypes.func.isRequired,
-  onHideNav: PropTypes.func.isRequired,
-};
+
 
 export default SideNavigation;

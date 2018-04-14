@@ -47,7 +47,7 @@ class VideosList extends Component {
     
     switch(this.props.type){
       case('card'):
-        template = <VideosTemplate data={this.state.videos} team={this.state.teams}/>
+        template = <VideosTemplate data={this.state.videos} teams={this.state.teams}/>
         break;
       default:
         template=null
@@ -56,7 +56,11 @@ class VideosList extends Component {
   }
   
   loadMore = () => {
-    
+    let end = this.state.end + this.state.amount
+    this.request(this.state.end, end)
+    this.setState({
+      end
+    })
   }
   
   renderButton = () => {

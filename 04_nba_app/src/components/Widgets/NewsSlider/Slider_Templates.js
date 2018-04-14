@@ -6,8 +6,6 @@ import Styles from './Slider.css'
 
 const SliderTemplates = (props) => {
   
-  
-  
   let template = null
   
   const settings = {

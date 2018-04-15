@@ -26,7 +26,6 @@ const FormFields = props => {
   const changeHandler = (event, id, blur) => {
     const newState = props.formData;
     newState[id].value = event.target.value;
-    console.log(blur);
     if (blur) {
       let validData = validate(newState[id]);
       newState[id].valid = validData[0];

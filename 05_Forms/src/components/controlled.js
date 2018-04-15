@@ -21,12 +21,17 @@ class Controlled extends Component {
 		    lastName: value
 		  })
 		}
+		handleSubmit(e){
+		  e.preventDefault()
+		  
+		  
+		}
 
 		render(){
 				return(
 						<div className="container">
 								Controlled
-								<form>
+								<form onSubmit={this.handleSubmit}>
 								  <div className="form_element">
 								    <label>Enter Name</label>
 								    <input 

@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Layout from "./hoc/Layout/Layout";
 import NewsArticle from "./components/Articles/News/Post/index";
+import VideosArticle from './components/Articles/Videos/Video/index'
 
 class Routes extends Component {
   render() {
@@ -12,6 +13,7 @@ class Routes extends Component {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/articles/:id" component={NewsArticle} exact />
+          <Route path="/videos/:id" component={VideosArticle} exact />
         </Switch>
       </Layout>
     );

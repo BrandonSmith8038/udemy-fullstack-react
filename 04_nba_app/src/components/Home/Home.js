@@ -4,6 +4,7 @@ import NewsSlider from '../Widgets/NewsSlider/Slider';
 import NewsList from '../Widgets/NewsList/NewsList'
 import VideosList from '../Widgets/VideosList/VideosList'
 
+console.log(process.env.NODE_ENV)
 const Home = () => (
   <div>
     <NewsSlider 

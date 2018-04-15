@@ -16,7 +16,8 @@ class User extends Component {
           placeholder: "Enter Your name"
         },
         validation: {
-          required: true
+          required: true,
+          minLen: 5
         },
         valid: false,
         touched: false,

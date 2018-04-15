@@ -37,6 +37,16 @@ const FormFields = props => {
 
   const validate = element => {
     let error = [true, ""];
+
+    if (element.validation.minLen) {
+      const valid = element.value.length >= element.validation.minLen;
+      const message = `${
+        !valid ? `Must Be At Least ${element.validation.minLen} Characters` : ""
+      }`;
+
+      error = !valid ? [valid, message] : error;
+    }
+
     if (element.validation.required) {
       const valid = element.value.trim() !== "";
       const message = `${!valid ? "This field is required" : ""}`;

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import CardInfo from '../Widgets/CardInfo/CardInfo'
 
 const NewsListTemplate = (props) => {
-  console.log(props)
+  //console.log(props)
   return props.data.map((item, i) => {
      return ( 
        <Link to={`/articles/${item.id}`} key={i}>
-        <div className={Styles.videoListItem_wrapper}>
+        <div className={Styles.newsListItem_wrapper}>
           <div className={Styles.left} style={{
             background: `url(/images/articles/${item.image})`
           }}>

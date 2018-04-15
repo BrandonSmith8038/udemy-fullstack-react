@@ -19,10 +19,10 @@ class NewsHome extends Component {
           }}
         />
         <NewsList
-          type="card"
+          type="PicCard"
           loadmore={true}
-          start={3}
-          amount={3}
+          start={1}
+          amount={5}
         />
         
       </div>

@@ -7,6 +7,7 @@ import { JSON_SERVER } from '../../../config'
 import Styles from './NewsList.css'
 import Button from '../Buttons/Buttons'
 import CardInfo from '../CardInfo/CardInfo'
+import NewsTemplate from '../../News/NewsListTemplate'
 
 class NewsList extends Component {
   
@@ -18,7 +19,7 @@ class NewsList extends Component {
     amount: this.props.amount
   }
   
-  componentDidMount(){
+  componentWillMount(){
     this.request(this.state.start, this.state.end)
   }
   
@@ -70,6 +71,37 @@ class NewsList extends Component {
                     <CardInfo teams={this.state.teams} team={id} date={date} />
                     <h2>{item.title}</h2>
                   </Link>
+                </div>
+              </div>
+            </CSSTransition>
+          )
+        })
+        break;
+      case 'PicCard':
+          template = this.state.items.map((item, i) => {
+          const { title, id, date } = item
+          return (
+            <CSSTransition
+              classNames={{
+                enter: Styles.newsList_wrapper,
+                enterActive: Styles.newsList_wrapper_enter,
+              }}
+                timeout= {500}
+                key= {i}
+            >
+              <div className={Styles.cardWrapper}>
+                <div className={Styles.left} style={{
+                  background: `url(/images/articles/${item.image})`
+                }}>
+                  <div></div>
+                </div>
+                <div className={Styles.right}>
+                  <div className={Styles.newsHomeList_item}>
+                    <Link to={`/articles/${id}`}>
+                      <CardInfo teams={this.state.teams} team={id} date={date} />
+                      <h2>{item.title}</h2>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </CSSTransition>

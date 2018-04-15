@@ -1,3 +1,27 @@
+.videoList_wrapper h3 {
+  color: #353535;
+  font-size: 21px;
+  font-weight: 300;
+  margin: 20px;
+  text-align: center;
+}
+
+.videoListItem_wrapper {
+  display: flex;
+  border-bottom: 2px solid #d5d5d5;
+  background: white;
+}
+
+.videoListItem_wrapper h2 {
+  font-size: 13px;
+  color: #525252;
+}
+
+.left {
+  background-size: cover !important;
+
+}
+
 .left div {
   width: 90px;
   height: 90px;

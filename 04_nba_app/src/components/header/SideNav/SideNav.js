@@ -1,0 +1,26 @@
+import React from 'react';
+import SideNav from 'react-simple-sidenav';
+import PropTypes from 'prop-types';
+
+import SideNavItems from './SideNav_Items';
+
+function SideNavigation(props) {
+  return (
+    <div>
+      <SideNav
+        showNav={props.showNav}
+        onHideNav={props.onHideNav}
+        navStyle={{
+          background: '#242424',
+          maxWidth: '220px',
+        }}
+      >
+        <SideNavItems />
+      </SideNav>
+    </div>
+  );
+}
+
+
+
+export default SideNavigation;

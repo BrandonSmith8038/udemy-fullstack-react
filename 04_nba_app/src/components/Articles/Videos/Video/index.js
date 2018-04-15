@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { JSON_SERVER } from '../../../../config'
 
-import Styles from '../../articles.css'
+import Styles from '../../../Articles/articles.css'
 import Header from './Header'
+import VideosRelated from '../../../Widgets/VideosList/VideosRelated/VideosRelated'
 
 
 class VideoArticle extends Component {
   state = {
     article: [],
-    team: []
+    team: [],
+    teams: [],
+    related: []
   }
   
   componentWillMount(){
@@ -23,8 +26,24 @@ class VideoArticle extends Component {
             article,
             team: response.data
           });
+          this.getRelated()
         });
       });
+  }
+  
+  getRelated = () => {
+    axios.get(`${JSON_SERVER}/teams`)
+    .then(response => {
+      let teams = response.data
+      
+      axios.get(`${JSON_SERVER}/videos?q=${this.state.team[0].city}&_limit=3`)
+      .then(response => {
+        this.setState({
+          teams,
+          related: response.data
+        })
+      })
+    })
   }
   render(){
     const { article, team } = this.state
@@ -32,6 +51,20 @@ class VideoArticle extends Component {
     return(
       <div>
         <Header teamData={team[0]} />
+        <div className={Styles.videoWrapper}>
+          <h1>{article.title}</h1>
+          <iframe
+            title="videoplayer"
+            width="100%"
+            height="300px"
+            src={`https://www.youtube.com/embed/${article.url}`}
+          >
+          </iframe>
+          <VideosRelated 
+            data={this.state.related}
+            teams={this.state.teams}
+          />
+        </div>
       </div>
     )
   }

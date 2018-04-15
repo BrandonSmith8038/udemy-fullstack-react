@@ -34,11 +34,11 @@ class User extends Component {
           placeholder: "Enter Your lastname"
         },
         validation: {
-          required: true,
-          valid: false,
-          touched: false,
-          validationMessage: ""
-        }
+          required: true
+        },
+        valid: false,
+        touched: false,
+        validationMessage: ""
       },
       message: {
         element: "textarea",
@@ -51,11 +51,11 @@ class User extends Component {
           cols: 36
         },
         validation: {
-          required: false,
-          valid: false,
-          touched: false,
-          validationMessage: ""
-        }
+          required: false
+        },
+        valid: true,
+        touched: false,
+        validationMessage: ""
       },
       age: {
         element: "select",
@@ -72,11 +72,11 @@ class User extends Component {
           ]
         },
         validation: {
-          required: false,
-          valid: false,
-          touched: false,
-          validationMessage: ""
-        }
+          required: false
+        },
+        valid: true,
+        touched: false,
+        validationMessage: ""
       }
     }
   };
@@ -91,11 +91,19 @@ class User extends Component {
     event.preventDefault();
 
     let dataToSubmit = {};
+    let formIsValid = true;
 
     for (let key in this.state.formData) {
       dataToSubmit[key] = this.state.formData[key].value;
     }
-    console.log(dataToSubmit);
+
+    for (let key in this.state.formData) {
+      formIsValid = this.state.formData[key].valid && formIsValid;
+    }
+
+    if (formIsValid) {
+      console.log(dataToSubmit);
+    }
   };
 
   render() {
@@ -105,6 +113,7 @@ class User extends Component {
         <form onSubmit={this.submitForm}>
           <FormFields
             formData={this.state.formData}
+            onBlur={newState => this.updateForm(newState)}
             change={newState => this.updateForm(newState)}
           />
           <button type="submit">Submit</button>

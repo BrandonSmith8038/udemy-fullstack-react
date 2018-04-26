@@ -7,6 +7,7 @@ const header = () => {
             <div>
                 <Link to="/uncontrolled"> Uncontrolled </Link>
                 <Link to="/controlled"> Controlled </Link>
+                <Link to="/login"> Login </Link>
                 <Link to="/user"> User </Link>
             </div>
         </header>

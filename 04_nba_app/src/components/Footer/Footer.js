@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import styles from "./Footer.css";
-import { CURRENT_YEAR } from "../../config";
+import styles from './Footer.css'
+import { CURRENT_YEAR } from '../../config'
 
 function Footer() {
   return (
@@ -14,7 +14,7 @@ function Footer() {
         @NBA {CURRENT_YEAR} All Rights Reserved
       </div>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

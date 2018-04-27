@@ -1,13 +1,12 @@
-import React from 'react';
-import Slick from 'react-slick';
+import React from 'react'
+import Slick from 'react-slick'
 import { Link } from 'react-router-dom'
 
 import Styles from './Slider.css'
 
-const SliderTemplates = (props) => {
-  
+const SliderTemplates = props => {
   let template = null
-  
+
   const settings = {
     dots: true,
     infinite: true,
@@ -15,63 +14,59 @@ const SliderTemplates = (props) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    ...props.settings
+    ...props.settings,
   }
-  
-  switch(props.type){
-    case "featured":
-      template = props.data.map((item,i) => {
+
+  switch (props.type) {
+    case 'featured':
+      template = props.data.map((item, i) => {
         const { image, id, title } = item
         return (
           <div key={i}>
-             <div className={Styles.featured_item}>
-              <div className={Styles.featured_image}
+            <div className={Styles.featured_item}>
+              <div
+                className={Styles.featured_image}
                 style={{
-                  background: `url(../images/articles/${image})`
+                  background: `url(../images/articles/${image})`,
                 }}
               >
                 <Link to={`/articles/${id}`}>
-                  <div className={Styles.featured_caption}>
-                    {title}
-                  </div>
+                  <div className={Styles.featured_caption}>{title}</div>
                 </Link>
               </div>
-             </div>
+            </div>
           </div>
         )
       })
-      break;
-      case "other":
-      template = props.data.map((item,i) => {
+      break
+    case 'other':
+      template = props.data.map((item, i) => {
         const { image, id, title } = item
         return (
           <div key={i}>
-             <div className={Styles.featured_item}>
-              <div className={Styles.featured_image}
+            <div className={Styles.featured_item}>
+              <div
+                className={Styles.featured_image}
                 style={{
-                  background: `url(../images/articles/${image})`
+                  background: `url(../images/articles/${image})`,
                 }}
               >
                 <Link to={`/articles/${id}`}>
-                  <div className={Styles.featured_caption}>
-                    {title}
-                  </div>
+                  <div className={Styles.featured_caption}>{title}</div>
                 </Link>
               </div>
-             </div>
+            </div>
           </div>
         )
       })
-      break;
+      break
     default:
-      template=null
+      template = null
   }
-  
+
   return (
     <div>
-      <Slick {...settings} >
-        {template}
-      </Slick>
+      <Slick {...settings}>{template}</Slick>
     </div>
   )
 }

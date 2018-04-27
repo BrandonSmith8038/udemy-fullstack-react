@@ -1,8 +1,8 @@
-import React from 'react';
-import SideNav from 'react-simple-sidenav';
-import PropTypes from 'prop-types';
+import React from 'react'
+import SideNav from 'react-simple-sidenav'
+import PropTypes from 'prop-types'
 
-import SideNavItems from './SideNav_Items';
+import SideNavItems from './SideNav_Items'
 
 function SideNavigation(props) {
   return (
@@ -18,9 +18,7 @@ function SideNavigation(props) {
         <SideNavItems />
       </SideNav>
     </div>
-  );
+  )
 }
 
-
-
-export default SideNavigation;
+export default SideNavigation

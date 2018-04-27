@@ -1,15 +1,15 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
-import SideNav from './SideNav/SideNav';
-import style from './header.css';
+import React from 'react'
+import FontAwesome from 'react-fontawesome'
+import { Link } from 'react-router-dom'
+import SideNav from './SideNav/SideNav'
+import style from './header.css'
 
 function Header(props) {
   const logo = () => (
     <Link to="/" className={style.logo}>
       <img alt="nba logo" src="/images/nba_logo.png" />
     </Link>
-  );
+  )
 
   const navBars = () => (
     <div className="style.bars">
@@ -23,7 +23,7 @@ function Header(props) {
         }}
       />
     </div>
-  );
+  )
 
   return (
     <div>
@@ -36,7 +36,7 @@ function Header(props) {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

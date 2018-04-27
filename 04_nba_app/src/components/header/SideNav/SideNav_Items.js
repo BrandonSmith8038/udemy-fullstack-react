@@ -1,8 +1,8 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import FontAwesome from 'react-fontawesome'
+import { Link } from 'react-router-dom'
 
-import style from './SideNav.css';
+import style from './SideNav.css'
 
 const items = [
   {
@@ -35,7 +35,7 @@ const items = [
     text: 'Sign Out',
     link: '/sign-out',
   },
-];
+]
 
 const showItems = () =>
   items.map(({ type, icon, text, link }) => (
@@ -45,10 +45,10 @@ const showItems = () =>
         {text}
       </Link>
     </div>
-  ));
+  ))
 
 function SideNavItems() {
-  return <div>{showItems()}</div>;
+  return <div>{showItems()}</div>
 }
 
-export default SideNavItems;
+export default SideNavItems

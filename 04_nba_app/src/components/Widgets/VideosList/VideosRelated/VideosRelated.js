@@ -6,10 +6,7 @@ import VideoListTemplate from '../VideosListTemplate'
 const videosReleated = props => {
   return (
     <div className={Styles.relatedWrapper}>
-      <VideoListTemplate
-        data={props.data}
-        teams={props.teams}
-      />
+      <VideoListTemplate data={props.data} teams={props.teams} />
     </div>
   )
 }

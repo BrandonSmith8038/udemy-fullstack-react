@@ -12,9 +12,8 @@ const VideosHome = () => {
         start={0}
         amount={8}
       />
-    </div>  
-  ) 
-  
+    </div>
+  )
 }
 
 export default VideosHome

@@ -1,34 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-import NewsSlider from '../Widgets/NewsSlider/Slider';
+import NewsSlider from '../Widgets/NewsSlider/Slider'
 import NewsList from '../Widgets/NewsList/NewsList'
 import VideosList from '../Widgets/VideosList/VideosList'
 
 const Home = () => (
   <div>
-    <NewsSlider 
+    <NewsSlider
       type="featured"
       start={0}
       amount={3}
-      settings = {{
-        dots: false
+      settings={{
+        dots: false,
       }}
     />
-    <NewsList
-      type="card"
-      loadmore={true}
-      start={3}
-      amount={3}
-    />
+    <NewsList type="card" loadmore={true} start={3} amount={3} />
 
-    <VideosList
-      type="card"
-      title={true}
-      loadMore={true}
-      start={0}
-      amount={4}
-    />
+    <VideosList type="card" title={true} loadMore={true} start={0} amount={4} />
   </div>
-);
+)
 
-export default Home;
+export default Home

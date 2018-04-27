@@ -1,33 +1,37 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import { firebaseDB, firebaseLooper, firebaseTeams } from '../../../../firebase'
-import Styles from "../../articles.css";
-import Header from "./Header";
-
+import Styles from '../../articles.css'
+import Header from './Header'
 
 export default class NewsArticles extends Component {
   state = {
     article: [],
-    team: []
-  };
+    team: [],
+  }
 
   componentWillMount() {
-    firebaseDB.ref(`articles/${this.props.match.params.id}`).once('value')
-    .then(snapshot => {
-      let article = snapshot.val()
-      
-      firebaseTeams.orderByChild("teamId").equalTo(article.team).once('value')
+    firebaseDB
+      .ref(`articles/${this.props.match.params.id}`)
+      .once('value')
       .then(snapshot => {
-        const team = firebaseLooper(snapshot)
-        this.setState({
-          article,
-          team
-        })
+        let article = snapshot.val()
+
+        firebaseTeams
+          .orderByChild('teamId')
+          .equalTo(article.team)
+          .once('value')
+          .then(snapshot => {
+            const team = firebaseLooper(snapshot)
+            this.setState({
+              article,
+              team,
+            })
+          })
       })
-    })
   }
 
   render() {
-    const { article, team } = this.state;
+    const { article, team } = this.state
     return (
       <div className={Styles.articleWrapper}>
         <Header
@@ -40,12 +44,12 @@ export default class NewsArticles extends Component {
           <div
             className={Styles.articleImage}
             style={{
-              background: `url('/images/articles/${article.image}')`
+              background: `url('/images/articles/${article.image}')`,
             }}
           />
           <div className={Styles.articleText}>{article.body}</div>
         </div>
       </div>
-    );
+    )
   }
 }

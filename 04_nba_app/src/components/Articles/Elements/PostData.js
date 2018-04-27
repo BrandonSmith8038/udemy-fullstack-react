@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "../articles.css";
+import moment from 'moment'
 
 const PostData = props => {
   console.log("PostData");
@@ -7,7 +8,7 @@ const PostData = props => {
     <div className={Styles.articlePostData}>
       <div>
         Date:
-        <span>{props.data.date}</span>
+        <span>{moment(props.data.date).format(" MM-DD-YYYY")}</span>
       </div>
       <div>
         Author:

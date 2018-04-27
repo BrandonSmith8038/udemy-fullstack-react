@@ -55,6 +55,8 @@
     "start": "node scripts/start.js",
     "startC9": "REACT_APP_process.env.NODE_ENV=c9 node scripts/start.js",
     "build": "node scripts/build.js",
+    "format": "prettier --trailing-comma all --single-quote --write \"src/**/*.js\"",
+    "precommit": "pretty-quick --staged",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
@@ -100,6 +102,14 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-emotion": "^9.1.2",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-webpack": "^0.8.4",
+    "eslint-plugin-flowtype": "^2.41.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "prettier": "^1.10.2"
   }
 }

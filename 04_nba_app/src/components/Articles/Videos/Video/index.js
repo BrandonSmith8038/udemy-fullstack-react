@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { JSON_SERVER } from '../../../../config'
 
+import { firebaseDB, firebaseLooper, firebaseTeams, firebaseVideos } from '../../../../firebase'
 import Styles from '../../../Articles/articles.css'
 import Header from './Header'
 import VideosRelated from '../../../Widgets/VideosList/VideosRelated/VideosRelated'
@@ -16,38 +15,43 @@ class VideoArticle extends Component {
   }
   
   componentWillMount(){
-    axios
-      .get(`${JSON_SERVER}/videos?id=${this.props.match.params.id}`)
-      .then(response => {
-        let article = response.data[0];
-
-        axios.get(`${JSON_SERVER}/teams?id=${article.team}`).then(response => {
-          this.setState({
-            article,
-            team: response.data
-          });
-          this.getRelated()
-        });
-      });
+    firebaseDB.ref(`videos/${this.props.match.params.id}`).once('value')
+    .then(snapshot => {
+      let article = snapshot.val()
+      
+      firebaseTeams.orderByChild("teamId").equalTo(article.team).once('value')
+      .then(snapshot => {
+        const team = firebaseLooper(snapshot)
+        this.setState({
+          article,
+          team
+        })
+        this.getRelated()
+      })
+    })
   }
   
   getRelated = () => {
-    axios.get(`${JSON_SERVER}/teams`)
-    .then(response => {
-      let teams = response.data
+    firebaseTeams.once('value')
+    .then(snapshot => {
+      const teams = firebaseLooper(snapshot)
       
-      axios.get(`${JSON_SERVER}/videos?q=${this.state.team[0].city}&_limit=3`)
-      .then(response => {
+      firebaseVideos
+      .orderByChild("team")
+      .equalTo(this.state.article.team)
+      .limitToFirst(3)
+      .once('value')
+      .then(snapshot => {
+        const related = firebaseLooper(snapshot)
         this.setState({
           teams,
-          related: response.data
+          related
         })
       })
     })
   }
   render(){
     const { article, team } = this.state
-    console.log(this.state)
     return(
       <div>
         <Header teamData={team[0]} />

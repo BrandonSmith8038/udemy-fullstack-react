@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Styles from './videosList.css'
-import axios from 'axios'
-
-import {JSON_SERVER} from '../../../config'
+import { firebaseVideos, firebaseTeams, firebaseLooper } from '../../../firebase'
+import { TransitionGroup } from 'react-transition-group'
 import Button from '../Buttons/Buttons'
 import VideosTemplate from './VideosListTemplate'
 
@@ -26,20 +25,22 @@ class VideosList extends Component {
   
   request = (start, end) => {
     if(this.state.teams.length < 1){
-      axios.get(`${JSON_SERVER}/teams`)
-        .then(response => {
-          this.setState({
-            teams: response.data
-          })
-        })
-    }
-
-    axios.get(`${JSON_SERVER}/videos?_start=${start}&_end=${end}`)
-      .then(response => {
+      firebaseTeams.once('value')
+      .then(snapshot => {
+        const teams = firebaseLooper(snapshot)
         this.setState({
-          videos: [...this.state.videos,...response.data]
+          teams
+        })
       })
-    })
+    }
+    firebaseVideos.orderByChild("id").startAt(start).endAt(end).once('value')
+      .then(snapshot => {
+        const videos = firebaseLooper(snapshot)
+        this.setState({
+          videos
+        })
+      })
+      .catch(err => console.log(err))
   }
   
   renderVideos = () => {
@@ -57,7 +58,7 @@ class VideosList extends Component {
   
   loadMore = () => {
     let end = this.state.end + this.state.amount
-    this.request(this.state.end, end)
+    this.request(this.state.end + 1, end)
     this.setState({
       end
     })
@@ -81,7 +82,12 @@ class VideosList extends Component {
     return (
       <div className={Styles.videoList_wrapper}>
         {this.renderTitle()}
-        {this.renderVideos()}
+        <TransitionGroup
+          component="div"
+          className="list"
+        >
+          {this.renderVideos()}
+        </TransitionGroup>
         {this.renderButton()}
       </div>
     )

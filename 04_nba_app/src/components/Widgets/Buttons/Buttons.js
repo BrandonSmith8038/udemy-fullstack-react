@@ -15,7 +15,7 @@ const Buttons = (props) => {
           className={Styles.blue_btn}
           onClick={loadMore}  
         >
-          {cta}
+          {props.cta}
         </div>
       )
       break;

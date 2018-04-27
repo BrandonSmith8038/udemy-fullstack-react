@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group' 
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-
-import { JSON_SERVER } from '../../../config'
+import { firebase, firebaseTeams, firebaseArticles, firebaseLooper } from '../../../firebase'
 import Styles from './NewsList.css'
 import Button from '../Buttons/Buttons'
 import CardInfo from '../CardInfo/CardInfo'
@@ -25,25 +23,28 @@ class NewsList extends Component {
   
   request = (start, end) => {
     if(this.state.teams.length < 1){
-      axios.get(`${JSON_SERVER}/teams`)
-        .then(response => {
-          this.setState({
-            teams: response.data
-          })
+      firebaseTeams.once('value')
+      .then(snapshot => {
+        const teams = firebaseLooper(snapshot)
+        this.setState({
+          teams
         })
+      })
+    }
+      firebaseArticles.orderByChild("id").startAt(start).endAt(end).once('value')
+      .then(snapshot => {
+        const articles = firebaseLooper(snapshot)
+        this.setState({
+          items: [...this.state.items,...articles], start, end
+        })
+      })
+      .catch(err => console.log(err))
     }
 
-    axios.get(`${JSON_SERVER}/articles?_start=${start}&_end=${end}`)
-      .then(response => {
-        this.setState({
-          items: [...this.state.items,...response.data]
-      })
-    })
-  }
   
   loadMore = () => {
     let end = this.state.end + this.state.amount
-    this.request(this.state.end,end)
+    this.request(this.state.end + 1,end)
     this.setState({
       end
     })
@@ -55,7 +56,7 @@ class NewsList extends Component {
     switch (type) {
       case 'card':
         template = this.state.items.map((item, i) => {
-          const { title, id, date } = item
+          const { title, id, date,team } = item
           return (
             <CSSTransition
               classNames={{
@@ -68,7 +69,7 @@ class NewsList extends Component {
               <div>
                 <div className={Styles.newsList_item}>
                   <Link to={`/articles/${id}`}>
-                    <CardInfo teams={this.state.teams} team={id} date={date} />
+                    <CardInfo teams={this.state.teams} team={team} date={date} />
                     <h2>{item.title}</h2>
                   </Link>
                 </div>

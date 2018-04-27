@@ -4,7 +4,6 @@ import NewsSlider from '../Widgets/NewsSlider/Slider';
 import NewsList from '../Widgets/NewsList/NewsList'
 import VideosList from '../Widgets/VideosList/VideosList'
 
-console.log(process.env.NODE_ENV)
 const Home = () => (
   <div>
     <NewsSlider 
@@ -15,7 +14,7 @@ const Home = () => (
         dots: false
       }}
     />
-    <NewsList
+    {/*<NewsList
       type="card"
       loadmore={true}
       start={3}
@@ -27,7 +26,7 @@ const Home = () => (
       loadMore={true}
       start={0}
       amount={4}
-    />
+    />*/}
   </div>
 );
 
